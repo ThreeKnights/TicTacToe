@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,9 +38,11 @@ class MainActivity : AppCompatActivity() {
         playGame(cellID,buSelected)
     }
 
-    var activePlayer = 1
+    var activePlayer:Int = 1
     var player1 = arrayListOf<Int>()
     var player2 = arrayListOf<Int>()
+    var player1scr:Int = 0
+    var player2scr:Int = 0
     var count:Int = 0
 
     fun playGame(cellID:Int, buSelected:Button) {
@@ -92,13 +95,17 @@ class MainActivity : AppCompatActivity() {
           )
             winner = 2
 
-        //checking which play won the game
+        //checking which player won the game
         if(winner == 1) {
             Toast.makeText(this,"Player 1 Won the game.",Toast.LENGTH_LONG).show()
+            player1scr++
+            player1Score.text = "Player 1 won $player1scr times."
             winner = -1
             buReset1()
         }else if(winner == 2) {
             Toast.makeText(this,"Player 2 Won the game.",Toast.LENGTH_LONG).show()
+            player2scr++
+            player2Score.text = "Player 2 won $player2scr times."
             winner = -1
             buReset1()
         }
@@ -128,6 +135,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun buReset1(view: View) {
+        player1scr = 0
+        player2scr = 0
+        player1Score.text = ""
+        player2Score.text = ""
         buReset1()
     }
 }
