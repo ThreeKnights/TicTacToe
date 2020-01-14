@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     fun buClick(view: View) {
 
         var buSelected = view as Button
-
         var cellID:Int = 0
 
         when(buSelected.id){
