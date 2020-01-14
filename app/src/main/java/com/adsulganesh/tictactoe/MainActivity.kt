@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity() {
           )
             winner = 1
 
-
         if(
             (player2.contains(1) && player2.contains(2) && player2.contains(3)) ||  //row 1
             (player2.contains(4) && player2.contains(5) && player2.contains(6)) ||  //row 2
@@ -104,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             buReset1()
         }
     }
-
     fun buReset1() {
 
         player1.clear()
