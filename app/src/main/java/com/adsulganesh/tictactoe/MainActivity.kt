@@ -45,28 +45,35 @@ class MainActivity : AppCompatActivity() {
 
     var player1 = arrayListOf<Int>()
     var player2 = arrayListOf<Int>()
-
+    var count:Int = 0
 
     fun playGame(cellID:Int, buSelected:Button) {
+        val view:View
         if(activePlayer == 1) {
             buSelected.text = "X"
             buSelected.setBackgroundResource(R.color.lightBlue)
             player1.add(cellID)
             activePlayer = 2
+            count++
         }
         else{
             buSelected.text = "O"
             buSelected.setBackgroundResource(R.color.lightGreen)
             player2.add(cellID)
             activePlayer = 1
+            count++
         }
         buSelected.isEnabled = false
-        checkWinner()
+        if(count==9) {
+            buReset1()
+            Toast.makeText(this,"Draw",Toast.LENGTH_LONG).show()
+        }else {
+            checkWinner()
+        }
     }
 
     fun checkWinner() {
         var winner = -1
-
         //row one
         if(player1.contains(1) && player1.contains(2) && player1.contains(3))
         {
@@ -143,7 +150,7 @@ class MainActivity : AppCompatActivity() {
         {
             winner = 1
         }
-        if(player2.contains(3) && player2.contains(5) && player2.contains(3))
+        if(player2.contains(3) && player2.contains(5) && player2.contains(7))
         {
             winner = 2
         }
@@ -152,25 +159,45 @@ class MainActivity : AppCompatActivity() {
         {
             Toast.makeText(this,"Player 1 Won the game.",Toast.LENGTH_LONG).show()
             winner = -1
+            buReset1()
         }else if(winner == 2)
         {
             Toast.makeText(this,"Player 2 Won the game.",Toast.LENGTH_LONG).show()
             winner = -1
+            buReset1()
         }
 
 
     }
 
-    fun buReset(view: View) {
+    fun buReset1() {
 
         player1.clear()
         player2.clear()
         activePlayer = 1
-        var buButton = view as Button
+        count = 0
+        var buttons = arrayListOf<Button>()
+        buttons.add(findViewById(R.id.bu1))
+        buttons.add(findViewById(R.id.bu2))
+        buttons.add(findViewById(R.id.bu3))
+        buttons.add(findViewById(R.id.bu4))
+        buttons.add(findViewById(R.id.bu5))
+        buttons.add(findViewById(R.id.bu6))
+        buttons.add(findViewById(R.id.bu7))
+        buttons.add(findViewById(R.id.bu8))
+        buttons.add(findViewById(R.id.bu9))
 
-
+        for (btn in buttons)
+        {
+            btn.isEnabled = true
+            btn.text = ""
+            btn.setBackgroundResource(R.color.white)
+        }
     }
 
+    fun buReset1(view: View) {
+        buReset1()
+    }
 
 
 }

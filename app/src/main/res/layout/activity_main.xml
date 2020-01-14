@@ -120,8 +120,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10pt"
             android:layout_marginRight="10pt"
-            android:gravity="center|right"
-            android:onClick="buReset"
+            android:gravity="center"
+            android:onClick="buReset1"
             android:text="Reset" />
     </TableRow>
 </TableLayout>
